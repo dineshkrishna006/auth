@@ -26,7 +26,19 @@ export const signUp = async (req, res) => {
     });
 
     console.log(newUser, "abc");
-    return res.status(200).json({
+    // return res.status(200).json({
+    //   success: true,
+    //   message: "User created Successfully",
+    //   data: {
+    //     token,
+    //     user: newUser[0],
+    //   },
+    // });
+    return res.status(200).cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    }).json({
       success: true,
       message: "User created Successfully",
       data: {
